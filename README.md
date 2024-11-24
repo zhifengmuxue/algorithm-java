@@ -31,7 +31,7 @@
 
 ### 联系方式
 
-如有任何问题或建议，请通过以下方式与我们联系：
+如有任何问题或建议，请通过以下方式联系：
 
 - **邮箱**：[zhifengmuxue@gmail.com](mailto:zhifengmuxue@gmail.com)
 
