@@ -4,9 +4,7 @@
 ### 目录
 
 - Image-compression-encryption 图像加密以及压缩
-  - [x] 图像的哈夫曼压缩（opencv）
-  - [x] 图像的哈夫曼压缩（java原生）
-  - [ ] 图像简单加密
+- search-problem 搜索问题
 
 
 
