@@ -10,7 +10,7 @@ import java.util.List;
 public class Maze {
     private final int rows, columns;
     private final MazeLocation start, goal;
-    private Cell[][] grid;
+    private final Cell[][] grid;
 
 
     /**

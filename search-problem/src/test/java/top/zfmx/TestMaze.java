@@ -5,7 +5,6 @@ import top.zfmx.maze.Maze;
 import top.zfmx.search.Node;
 import top.zfmx.search.SearchFactory;
 import top.zfmx.search.strategy.AdvancedSearchStrategy;
-import top.zfmx.search.strategy.SearchStrategy;
 
 import java.util.List;
 

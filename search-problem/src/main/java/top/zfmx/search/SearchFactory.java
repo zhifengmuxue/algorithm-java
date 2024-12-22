@@ -5,8 +5,6 @@ import top.zfmx.search.strategy.SearchStrategy;
 import top.zfmx.search.strategy.impl.*;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.function.ToDoubleFunction;
 
 
