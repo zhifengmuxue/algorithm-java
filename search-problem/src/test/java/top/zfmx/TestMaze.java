@@ -2,7 +2,10 @@ package top.zfmx;
 
 import org.junit.Test;
 import top.zfmx.maze.Maze;
+import top.zfmx.search.Node;
 import top.zfmx.search.SearchFactory;
+import top.zfmx.search.strategy.AdvancedSearchStrategy;
+import top.zfmx.search.strategy.SearchStrategy;
 
 import java.util.List;
 
@@ -20,11 +23,9 @@ public class TestMaze {
         System.out.println(maze);
         System.out.println("====================================");
 
-        SearchFactory.Node<Maze.MazeLocation> solution = SearchFactory.dfs(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors
-        );
+        SearchFactory searchFactory = new SearchFactory();
+        AdvancedSearchStrategy<Maze.MazeLocation> dfsSearch = searchFactory.getAdvancedSearchStrategy("dfs", null);
+        Node<Maze.MazeLocation> solution = dfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
 
         if (solution == null){
             System.out.println("No solution found!");
@@ -41,11 +42,10 @@ public class TestMaze {
         Maze maze = new Maze();
         System.out.println(maze);
         System.out.println("====================================");
-        SearchFactory.Node<Maze.MazeLocation> solution = SearchFactory.bfs(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors
-        );
+
+        SearchFactory searchFactory = new SearchFactory();
+        AdvancedSearchStrategy<Maze.MazeLocation> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
+        Node<Maze.MazeLocation> solution = bfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
 
         if (solution == null){
             System.out.println("No solution found!");
@@ -63,13 +63,9 @@ public class TestMaze {
         System.out.println(maze);
         System.out.println("====================================");
 
-        SearchFactory.Node<Maze.MazeLocation> solution = SearchFactory.aStar(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors,
-                maze::manhattanDistance
-        );
-
+        SearchFactory searchFactory = new SearchFactory();
+        AdvancedSearchStrategy<Maze.MazeLocation> aStarSearch = searchFactory.getAdvancedSearchStrategy("astar", maze::manhattanDistance);
+        Node<Maze.MazeLocation> solution = aStarSearch.search(maze.getStart(), maze::isGoal, maze::successors);
         if (solution == null){
             System.out.println("No solution found!");
         } else {
@@ -83,14 +79,12 @@ public class TestMaze {
     @Test
     public void testAll(){
         Maze maze = new Maze();
+        SearchFactory searchFactory = new SearchFactory();
         System.out.println(maze);
         System.out.println("====================================");
 
-        SearchFactory.Node<Maze.MazeLocation> dfsSolution = SearchFactory.dfs(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors
-        );
+        AdvancedSearchStrategy<Maze.MazeLocation> dfsSearch = searchFactory.getAdvancedSearchStrategy("dfs", null);
+        Node<Maze.MazeLocation> dfsSolution = dfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
 
         if (dfsSolution == null){
             System.out.println("No solution found!");
@@ -101,11 +95,9 @@ public class TestMaze {
             maze.clear(dfsPath);
         }
         System.out.println("====================================");
-        SearchFactory.Node<Maze.MazeLocation> bfsSolution = SearchFactory.bfs(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors
-        );
+
+        AdvancedSearchStrategy<Maze.MazeLocation> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
+        Node<Maze.MazeLocation> bfsSolution = bfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
 
         if (bfsSolution == null){
             System.out.println("No solution found!");
@@ -117,17 +109,13 @@ public class TestMaze {
         }
         System.out.println("====================================");
 
-        SearchFactory.Node<Maze.MazeLocation> solution = SearchFactory.aStar(
-                maze.getStart(),
-                maze::isGoal,
-                maze::successors,
-                maze::manhattanDistance
-        );
+        AdvancedSearchStrategy<Maze.MazeLocation> aStarSearch = searchFactory.getAdvancedSearchStrategy("astar", maze::manhattanDistance);
+        Node<Maze.MazeLocation> aStarSolution = aStarSearch.search(maze.getStart(), maze::isGoal, maze::successors);
 
-        if (solution == null){
+        if (aStarSolution == null){
             System.out.println("No solution found!");
         } else {
-            List<Maze.MazeLocation> path = SearchFactory.nodeToPath(solution);
+            List<Maze.MazeLocation> path = SearchFactory.nodeToPath(aStarSolution);
             maze.mark(path);
             System.out.println(maze);
             maze.clear(path);

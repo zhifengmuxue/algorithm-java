@@ -12,6 +12,7 @@ public class Maze {
     private final MazeLocation start, goal;
     private Cell[][] grid;
 
+
     /**
      * 迷宫的参数
      */
@@ -34,7 +35,7 @@ public class Maze {
     /**
      * 标识迷宫各个位置的状态
      */
-    public static class MazeLocation{
+    public static class MazeLocation implements Comparable<MazeLocation>{
         public final int row, column;
         public MazeLocation(int row, int column){
             this.row = row;
@@ -63,6 +64,15 @@ public class Maze {
                 return false;
             return row == other.row;
         }
+
+        @Override
+        public int compareTo(MazeLocation o) {
+            if (this.row != o.row) {
+                return Integer.compare(this.row, o.row);
+            }
+            return Integer.compare(this.column, o.column);
+        }
+
     }
 
     /**
