@@ -43,4 +43,38 @@ public class TestMissionaries {
             MCState.displaySolution(path);
         }
     }
+
+    @Test
+    public void testDifferentCount(){
+        SearchFactory searchFactory = new SearchFactory();
+        MCState startState = new MCState(5, 2, true);
+        AdvancedSearchStrategy<MCState> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
+        Node<MCState> solution = bfsSearch.search(startState, MCState::goalTest, MCState::successors);
+
+        if (solution == null){
+            System.out.println("No solution found!");
+        } else {
+            List<MCState> path = SearchFactory.nodeToPath(solution);
+            MCState.displaySolution(path);
+            System.out.println("BFS: " + bfsSearch.getCount());
+        }
+    }
+
+    @Test
+    public void testFindAllSolve(){
+        // 找到从(3, 3, true)到(10, 10, false)的所有解
+        SearchFactory searchFactory = new SearchFactory();
+        AdvancedSearchStrategy<MCState> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
+
+        for (int i = 3; i <= 10; i++){
+            for (int j = 3; j <= 10; j++){
+                MCState startState = new MCState(i, j, true);
+                Node<MCState> solution = bfsSearch.search(startState, MCState::goalTest, MCState::successors);
+                if (solution!=null){
+                    System.out.println(i + " " + j);
+                }
+            }
+        }
+
+    }
 }
