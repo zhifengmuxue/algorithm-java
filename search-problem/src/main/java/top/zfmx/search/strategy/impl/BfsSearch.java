@@ -12,6 +12,7 @@ import java.util.function.Predicate;
  * @param <T> 状态类型
  */
 public class BfsSearch<T> implements AdvancedSearchStrategy<T> {
+    private int count = 0;
     @Override
     public Node<T> search(T initial, Predicate<T> goalTest, Function<T, List<T>> successors) {
         Queue<Node<T>> frontier = new LinkedList<>();
@@ -20,6 +21,7 @@ public class BfsSearch<T> implements AdvancedSearchStrategy<T> {
         explored.add(initial);
 
         while (!frontier.isEmpty()) {
+            count++;
             Node<T> currentNode = frontier.poll();
             T currentState = currentNode.getState();
 
@@ -36,5 +38,10 @@ public class BfsSearch<T> implements AdvancedSearchStrategy<T> {
             }
         }
         return null;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
     }
 }

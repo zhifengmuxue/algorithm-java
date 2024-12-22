@@ -20,6 +20,7 @@ public class AStarSearch<T> implements AdvancedSearchStrategy<T> {
 
     // 启发式函数
     private final ToDoubleFunction<T> heuristic;
+    private int count = 0;
 
     public AStarSearch(ToDoubleFunction<T> heuristic) {
         this.heuristic = heuristic;
@@ -33,6 +34,7 @@ public class AStarSearch<T> implements AdvancedSearchStrategy<T> {
         explored.put(initial, 0.0);
 
         while (!frontier.isEmpty()) {
+            count++;
             Node<T> currentNode = frontier.poll();
             T currentState = currentNode.getState();
 
@@ -50,5 +52,10 @@ public class AStarSearch<T> implements AdvancedSearchStrategy<T> {
             }
         }
         return null;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
     }
 }

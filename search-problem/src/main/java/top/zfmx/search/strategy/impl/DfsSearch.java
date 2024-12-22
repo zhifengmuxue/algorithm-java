@@ -15,6 +15,8 @@ import java.util.function.Predicate;
  * @param <T> 状态类型
  */
 public class DfsSearch<T> implements AdvancedSearchStrategy<T> {
+    private int count = 0;
+
     @Override
     public Node<T> search(T initial, Predicate<T> goalTest, Function<T, List<T>> successors) {
         Stack<Node<T>> frontier = new Stack<>();
@@ -23,6 +25,7 @@ public class DfsSearch<T> implements AdvancedSearchStrategy<T> {
         explored.add(initial);
 
         while (!frontier.isEmpty()) {
+            count++;
             Node<T> currentNode = frontier.pop();
             T currentState = currentNode.getState();
 
@@ -39,5 +42,10 @@ public class DfsSearch<T> implements AdvancedSearchStrategy<T> {
             }
         }
         return null;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
     }
 }

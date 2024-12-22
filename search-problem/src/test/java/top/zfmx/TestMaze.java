@@ -17,65 +17,6 @@ public class TestMaze {
     }
 
     @Test
-    public void testSolveMazeByDfs(){
-        Maze maze = new Maze();
-        System.out.println(maze);
-        System.out.println("====================================");
-
-        SearchFactory searchFactory = new SearchFactory();
-        AdvancedSearchStrategy<Maze.MazeLocation> dfsSearch = searchFactory.getAdvancedSearchStrategy("dfs", null);
-        Node<Maze.MazeLocation> solution = dfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
-
-        if (solution == null){
-            System.out.println("No solution found!");
-        } else {
-            List<Maze.MazeLocation> path = SearchFactory.nodeToPath(solution);
-            maze.mark(path);
-            System.out.println(maze);
-            maze.clear(path);
-        }
-    }
-
-    @Test
-    public void testSolveMazeByBfs(){
-        Maze maze = new Maze();
-        System.out.println(maze);
-        System.out.println("====================================");
-
-        SearchFactory searchFactory = new SearchFactory();
-        AdvancedSearchStrategy<Maze.MazeLocation> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
-        Node<Maze.MazeLocation> solution = bfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
-
-        if (solution == null){
-            System.out.println("No solution found!");
-        } else {
-            List<Maze.MazeLocation> path = SearchFactory.nodeToPath(solution);
-            maze.mark(path);
-            System.out.println(maze);
-            maze.clear(path);
-        }
-    }
-
-    @Test
-    public void testSolveMazeByAStar(){
-        Maze maze = new Maze();
-        System.out.println(maze);
-        System.out.println("====================================");
-
-        SearchFactory searchFactory = new SearchFactory();
-        AdvancedSearchStrategy<Maze.MazeLocation> aStarSearch = searchFactory.getAdvancedSearchStrategy("astar", maze::manhattanDistance);
-        Node<Maze.MazeLocation> solution = aStarSearch.search(maze.getStart(), maze::isGoal, maze::successors);
-        if (solution == null){
-            System.out.println("No solution found!");
-        } else {
-            List<Maze.MazeLocation> path = SearchFactory.nodeToPath(solution);
-            maze.mark(path);
-            System.out.println(maze);
-            maze.clear(path);
-        }
-    }
-
-    @Test
     public void testAll(){
         Maze maze = new Maze();
         SearchFactory searchFactory = new SearchFactory();
@@ -119,5 +60,40 @@ public class TestMaze {
             System.out.println(maze);
             maze.clear(path);
         }
+
+        // 返回各自的路径长度
+        System.out.println("DFS: " + dfsSearch.getCount());
+        System.out.println("BFS: " + bfsSearch.getCount());
+        System.out.println("A*: " + aStarSearch.getCount());
+    }
+
+    /**
+     * 测试100次迷宫, 比较三种搜索算法的性能
+     */
+    @Test
+    public void testMaze100(){
+
+        long dfsCount = 0L;
+        long bfsCount = 0L;
+        long aStarCount = 0L;
+
+        for (int i = 0; i < 100; i++){
+            Maze maze = new Maze();
+            SearchFactory searchFactory = new SearchFactory();
+            AdvancedSearchStrategy<Maze.MazeLocation> dfsSearch = searchFactory.getAdvancedSearchStrategy("dfs", null);
+            Node<Maze.MazeLocation> dfsSolution = dfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
+            dfsCount += dfsSearch.getCount();
+
+            AdvancedSearchStrategy<Maze.MazeLocation> bfsSearch = searchFactory.getAdvancedSearchStrategy("bfs", null);
+            Node<Maze.MazeLocation> bfsSolution = bfsSearch.search(maze.getStart(), maze::isGoal, maze::successors);
+            bfsCount += bfsSearch.getCount();
+
+            AdvancedSearchStrategy<Maze.MazeLocation> aStarSearch = searchFactory.getAdvancedSearchStrategy("astar", maze::manhattanDistance);
+            Node<Maze.MazeLocation> aStarSolution = aStarSearch.search(maze.getStart(), maze::isGoal, maze::successors);
+            aStarCount += aStarSearch.getCount();
+        }
+        System.out.println("DFS: " + dfsCount);
+        System.out.println("BFS: " + bfsCount);
+        System.out.println("A*: " + aStarCount);
     }
 }
