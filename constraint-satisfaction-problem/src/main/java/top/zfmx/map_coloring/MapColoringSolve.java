@@ -5,7 +5,11 @@ import top.zfmx.CSP;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 地图着色问题
+ * 约束：相邻的地区不能着相同的颜色
+ * 变量：每个地区
+ */
 public class MapColoringSolve {
     public static void main(String[] args) {
         List<String> variables = List.of("Western Australia",

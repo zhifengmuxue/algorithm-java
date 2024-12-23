@@ -6,16 +6,23 @@ CSP（Constraint Satisfaction Problem，约束满足问题）是一类经典的�
 
 - 着色问题
 - 八皇后问题
+- 单词搜索问题
+- SEND + MORE = MONEY 字谜问题
 
 
 ### 完成度
 
 - [x] CSP算法框架
 - [x] 着色问题
-- [ ] 八皇后问题
+- [x] 八皇后问题
+- [x] 单词搜索问题
+- [x] SEND + MORE = MONEY
+- [ ] 约束传播算法
 
 
-
+### 实际应用
+约束传播（constraint propagation）是一种更新的算法，也是实际应用种的一种高校方法
+如果需要在java中解决更复杂的约束问题，可以考虑使用Choco框架，参见 https://choco0solver.org/
 
 
 ### 启动项目
