@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Image-compression-encryption/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Image-compression-encryption/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/constraint-satisfaction-problem/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/constraint-satisfaction-problem/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/search-problem/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/search-problem/src/main/resources" charset="UTF-8" />
   </component>
