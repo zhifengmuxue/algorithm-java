@@ -15,9 +15,9 @@ CSP（Constraint Satisfaction Problem，约束满足问题）是一类经典的�
 - [x] CSP算法框架
 - [x] 着色问题
 - [x] 八皇后问题
-- [x] 单词搜索问题
+- [x] 单词搜索问题（不重叠约束）
 - [x] SEND + MORE = MONEY
-- [ ] 约束传播算法
+- [x] 单词搜索问题（重叠约束）
 
 
 ### 实际应用

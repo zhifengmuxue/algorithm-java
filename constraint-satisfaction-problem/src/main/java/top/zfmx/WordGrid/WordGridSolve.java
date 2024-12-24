@@ -14,13 +14,20 @@ import java.util.*;
 public class WordGridSolve {
     public static void main(String[] args) {
         WordGrid wordGrid = new WordGrid(9, 9);
-        List<String> words = List.of("MATTHEW", "JOE", "MARY", "SARAH", "SALLY");
+        List<String> words = List.of("CONSUMER", "DAILY", "ANT", "ACCESS", "SALLY");
+
         Map<String, List<List<WordGrid.GridLocation>>> domains = new HashMap<>();
         for (String word : words){
             domains.put(word, wordGrid.generateDomain(word));
         }
         CSP<String, List<WordGrid.GridLocation>> csp = new CSP<>(words, domains);
-        csp.addConstraint(new WordSearchConstraint(words));
+
+        // 不重叠约束
+//        csp.addConstraint(new WordSearchConstraintNoOverlap(words));
+
+        // 重叠约束
+        csp.addConstraint(new WordSearchConstraintOverlap(words));
+
         Map<String, List<WordGrid.GridLocation>> solution = csp.backtrackingSearch();
         if (solution == null){
             System.out.println("No solution found!");

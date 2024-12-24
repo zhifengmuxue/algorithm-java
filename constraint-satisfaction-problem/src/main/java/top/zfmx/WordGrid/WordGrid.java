@@ -10,7 +10,7 @@ public class WordGrid {
     private final char ALPHABET_LENGTH = 26;
     private final char FIRST_LETTER = 'A';
     private final int rows, columns;
-    private char[][] grid;
+    private final char[][] grid;
     /**
      * 网格位置
      */

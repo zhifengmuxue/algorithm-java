@@ -20,7 +20,9 @@ public class QueensSolve {
             rows.put(column, List.of(1, 2, 3, 4, 5, 6, 7, 8));
         }
         CSP<Integer, Integer> csp = new CSP<>(columns, rows);
+
         csp.addConstraint(new QueensConstraint(columns));
+
         Map<Integer, Integer> solution = csp.backtrackingSearch();
         if (solution == null){
             System.out.println("No solution found!");
