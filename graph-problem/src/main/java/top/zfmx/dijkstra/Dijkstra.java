@@ -1,6 +1,6 @@
 package top.zfmx.dijkstra;
 
-import top.zfmx.framework.WeightedEdge;
+import top.zfmx.framework.WeightedGraph.WeightedEdge;
 
 import java.util.Map;
 

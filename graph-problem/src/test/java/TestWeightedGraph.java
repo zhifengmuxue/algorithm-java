@@ -1,6 +1,6 @@
 import org.junit.Test;
 import top.zfmx.dijkstra.Dijkstra;
-import top.zfmx.framework.WeightedEdge;
+import top.zfmx.framework.WeightedGraph.WeightedEdge;
 import top.zfmx.framework.WeightedGraph;
 
 import java.util.List;
