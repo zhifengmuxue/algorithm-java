@@ -1,5 +1,6 @@
 import org.junit.Test;
-import top.zfmx.dijkstra.Dijkstra;
+import top.zfmx.DijkstraFactory;
+import top.zfmx.MstFactory;
 import top.zfmx.framework.WeightedGraph.WeightedEdge;
 import top.zfmx.framework.WeightedGraph;
 
@@ -51,7 +52,8 @@ public class TestWeightedGraph {
     public void testShortPath(){
         testInit();
         // 最短路径测试
-        Dijkstra.DijkstraResult result = graph.dijkstra("Los Angeles");
+        DijkstraFactory<String> dijkstraFactory = new DijkstraFactory<>();
+        DijkstraFactory.DijkstraResult result = dijkstraFactory.dijkstra("Los Angeles", graph);
         Map<String, Double> nameDistance = graph.distanceArrayToDistanceMap(result.distances);
         System.out.println("Distance from Los Angeles:");
         nameDistance.forEach((k, v) -> System.out.println(k + " " + v));
@@ -65,7 +67,7 @@ public class TestWeightedGraph {
     public void testMst(){
         testInit();
         // 计算最小生成树
-        List<WeightedEdge> mst = graph.mst(0);
+        List<WeightedEdge> mst = MstFactory.mst(0, graph);
         graph.printWeightedPath(mst);
     }
 }
