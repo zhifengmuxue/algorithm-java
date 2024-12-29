@@ -1,16 +1,16 @@
-package top.zfmx.short_path;
-
+import org.junit.Test;
+import top.zfmx.dijkstra.Dijkstra;
+import top.zfmx.framework.WeightedEdge;
 import top.zfmx.framework.WeightedGraph;
 
 import java.util.List;
+import java.util.Map;
 
-/**
- * 加权图的最短路径
- */
-public class WeightGraphShortPath {
-    private static WeightedGraph<String> graph;
+public class TestWeightedGraph {
+    private WeightedGraph<String> graph;
 
-    private static void init(){
+    @Test
+    public void testInit(){
         graph = new WeightedGraph<>(
                 List.of("Seattle", "San Francisco", "Los Angeles",
                         "Riverside", "Phoenix", "Chicago", "Boston",
@@ -46,7 +46,26 @@ public class WeightGraphShortPath {
         System.out.println(graph);
     }
 
-    public static void main(String[] args) {
-        init();
+
+    @Test
+    public void testShortPath(){
+        testInit();
+        // 最短路径测试
+        Dijkstra.DijkstraResult result = graph.dijkstra("Los Angeles");
+        Map<String, Double> nameDistance = graph.distanceArrayToDistanceMap(result.distances);
+        System.out.println("Distance from Los Angeles:");
+        nameDistance.forEach((k, v) -> System.out.println(k + " " + v));
+        System.out.println();
+        System.out.println("Shortest path from Los Angeles to Boston:");
+        List<WeightedEdge> path = WeightedGraph.pathMapToPath(graph.indexOf("Los Angeles"), graph.indexOf("Boston"), result.path);
+        graph.printWeightedPath(path);
+    }
+
+    @Test
+    public void testMst(){
+        testInit();
+        // 计算最小生成树
+        List<WeightedEdge> mst = graph.mst(0);
+        graph.printWeightedPath(mst);
     }
 }
