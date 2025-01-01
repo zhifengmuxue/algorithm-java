@@ -70,9 +70,12 @@ public class GeneticAlgorithm<C extends Chromosome<C>> {
 
     /**
      * 进化
-     * @param numPicks 选择的个体数量
+     * 通过两种选择之一选择numPicks条染色体，然后进行交叉操作，最后替换种群
+     * 如果使用锦标赛选择，始终在种群数量的一半中选择 （可更改）
+     * 如果nextPopulation的大小大于种群的大小，则删除适应度较低的个体
      */
-    private void reproduceAndReplace(int numPicks){
+    private void reproduceAndReplace(){
+        int numPicks = 2;  // 选择的个体数量
         ArrayList<C> nextPopulation = new ArrayList<>();
         while(nextPopulation.size() < population.size()){
             List<C> parents;
@@ -103,5 +106,40 @@ public class GeneticAlgorithm<C extends Chromosome<C>> {
         population = nextPopulation;
     }
 
+    /**
+     * 突变，对种群中的每个个体进行变异操作
+     * 细节交予染色体类实现
+     */
+    private void mutate(){
+        for(C individual : population){
+            if (random.nextDouble() < mutationRate){
+                individual.mutate();
+            }
+        }
+    }
 
+    /**
+     * 运行遗传算法
+     * @param maxGenerations 最大迭代次数
+     * @param threshold 适应度阈值
+     * @return 最优解
+     */
+    public C run(int maxGenerations, double threshold){
+        C best = Collections.max(population).copy(); // 找到适应度最大的个体
+        for(int generation = 0; generation < maxGenerations; generation++){
+            if (best.fitness() >= threshold){
+                return best;
+            }
+            System.out.println("Generation " + generation +
+                    " Best: " + best.fitness() +
+                    " Average: " + population.stream().mapToDouble(C::fitness).average().orElse(0.0));
+            reproduceAndReplace();
+            mutate();
+            C highest = Collections.max(population);
+            if (highest.fitness() > best.fitness()){
+                best = highest.copy();
+            }
+        }
+        return best;
+    }
 }
