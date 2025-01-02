@@ -7,6 +7,7 @@
 - search-problem 搜索问题
 - constraint-satisfaction-problem 约束满足问题
 - graph-problem 图论问题
+- genetic-algorithm 遗传算法
 
 
 

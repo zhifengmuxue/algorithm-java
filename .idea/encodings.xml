@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/genetic-algorithm/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graph-problem/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/graph-problem/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/k-means/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/k-means/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/search-problem/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/search-problem/src/main/resources" charset="UTF-8" />
   </component>

@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/constraint-satisfaction-problem/pom.xml" />
         <option value="$PROJECT_DIR$/graph-problem/pom.xml" />
         <option value="$PROJECT_DIR$/genetic-algorithm/pom.xml" />
+        <option value="$PROJECT_DIR$/k-means/pom.xml" />
       </list>
     </option>
   </component>
