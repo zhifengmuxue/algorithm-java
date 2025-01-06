@@ -4,7 +4,7 @@ import java.util.List;
  * 专辑数据点类
  * 按时间长度和歌曲数量对专辑进行分类
  */
-public class Album extends DataPoint{
+public class Album extends DataPoint {
     private final String name;
     private final int year;
 
