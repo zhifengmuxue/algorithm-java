@@ -59,7 +59,7 @@ public class KMeans<Point extends DataPoint> {
         for (Point ignored : points) {
             zScored.add(new ArrayList<>());
         }
-        for (int dimension = 0; dimension < points.get(0).numDimensions; dimension++) {
+        for (int dimension = 0; dimension < points.getFirst().numDimensions; dimension++) {
             List<Double> dimensionSlice = dimensionSlice(dimension);
             Statistics statistics = new Statistics(dimensionSlice);
             List<Double> zScores = statistics.zScored();
