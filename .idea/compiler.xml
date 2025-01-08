@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="search-problem" />
+        <module name="constraint-satisfaction-problem" />
         <module name="genetic-algorithm" />
         <module name="k-means" />
         <module name="graph-problem" />
-        <module name="search-problem" />
-        <module name="constraint-satisfaction-problem" />
         <module name="Image-compression-encryption" />
+        <module name="neural-network" />
       </profile>
     </annotationProcessing>
   </component>

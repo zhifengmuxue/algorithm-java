@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/graph-problem/pom.xml" />
         <option value="$PROJECT_DIR$/genetic-algorithm/pom.xml" />
         <option value="$PROJECT_DIR$/k-means/pom.xml" />
+        <option value="$PROJECT_DIR$/neural-network/pom.xml" />
       </list>
     </option>
   </component>
