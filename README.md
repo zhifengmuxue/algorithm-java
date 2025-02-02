@@ -8,7 +8,8 @@
 - constraint-satisfaction-problem 约束满足问题
 - graph-problem 图论问题
 - genetic-algorithm 遗传算法
-
+- k-means k均值聚类
+- neural-network 神经网络
 
 
 ### 使用指南
